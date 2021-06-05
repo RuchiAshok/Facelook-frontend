@@ -19,7 +19,7 @@ function Dashboard(){
 
         let newTitle = inputTitle;
         let newContent = inputContent;
-        let newPost = [...posts,{title: newTitle,content: newContent,comments:[]}];
+      //  let newPost = [...posts,{title: newTitle,content: newContent,comments:[]}];
         setInpContent('');
         setInpTitle('');
         
@@ -35,8 +35,8 @@ function Dashboard(){
           })
           .then(function (response) {
             console.log('Successfully Inserted');
-            console.log(response);
-            setposts(newPost);
+            // console.log(response);
+            setposts(response.data);
           })
           .catch(function (error) {
             console.log(error);
@@ -51,7 +51,6 @@ function Dashboard(){
             })
             .then(function (response) {
               console.log('True Hurray Connected!!');
-              console.log(response.data);
               let fetchPost = response.data;
               setposts(fetchPost);      
             })
@@ -62,12 +61,13 @@ function Dashboard(){
 
     }
    
-    function deletePostData(index){
+    function deletePostData(postData){
+      console.log(postData.postData.postId);
       
        // console.log(index);
        //   let newPost = posts.filter((element,index_no) =>index_no !==index);
         axios.post('http://localhost:8080/posts/deletePost', {
-            index: index
+            postId: postData.postData.postId
         },
           {
           headers: {
@@ -77,11 +77,11 @@ function Dashboard(){
         .then(function (response) {
           console.log('True Hurray Connected for delete!!');
            let fetchPost = response.data;
-           console.log(fetchPost);
         //   setposts(fetchPost);
-           let newPost =[...posts];
-           newPost.splice(index,1);
-           setposts(newPost);
+          // let newPost =[...posts];
+          // newPost.splice(index,1);
+          //let newPost = posts.filter((element,index_no) =>element.postId !==postData.postData.postId);
+           setposts(fetchPost);
 
   
         })
@@ -96,7 +96,7 @@ function Dashboard(){
         posts.map((postData,index) =>{
             return <div key={index}>
                 {/* // Key is not accessible to us under post component */}
-               <Post key={index} index={index} data={postData} delPostAPI={deletePostData}/>           
+               <Post key={index} index={index}  data={postData} delPostAPI={deletePostData}/>           
                    </div>          
         })
         }
