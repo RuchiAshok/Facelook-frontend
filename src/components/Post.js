@@ -18,6 +18,7 @@ function Post(props){
         axios.post('http://localhost:8080/posts/insertComment', {
             index: index,
             commentData: aComment
+           // postId:data.postId
           },
           {
             headers: {
@@ -74,11 +75,12 @@ function Post(props){
                 data.comments.map((commentData,index) =>{
                 return <div key ={index}>
                     <Comment key ={index} index={index} data = {commentData}  delCommentAPI ={deleteCommentData}/>
-                    {/* <button className="btn btn-secondary" style={{marginLeft: "520px", marginTop: "-44px"}} type="submit" onClick={() => deleteComment({commentData})}>Delete
-                        </button> */}
+                    
             </div> 
             })
         }</ul>
+        {/* <button className="btn btn-secondary" style={{marginLeft: "520px", marginTop: "-44px"}} type="submit" onClick={() => deleteComment({commentData})}>Delete
+                        </button> */}
 
         <input value={inputCommment} onChange={event => setInpComment(event.target.value)} style={{width: "50%",border: "1px solid #ced4da", borderRadius: ".25rem",height: "calc(1.5em + .75rem + 2px)"}} />
         {/* <button className="btn btn-danger" style={{}} type="submit" onClick={() => delPost({postData:data})}>Delete Post</button>*/}

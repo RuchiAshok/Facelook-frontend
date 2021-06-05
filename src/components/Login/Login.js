@@ -24,7 +24,7 @@ function Login() {
     .then(function (response) {
       console.log(response.data);
       if(response.data !=null){
-        if(response.data.userFound ==='Y' && response.data.jwtToken != null)
+        if(response.data.jwtToken != null)
         {
           console.log('Login Successful');
           ls.set('JWTToken', response.data.jwtToken);
@@ -32,11 +32,11 @@ function Login() {
         }
         else{
           setErrMsg(response.data.message);
-         // alert (response.data.message);
+
         } 
       }else{
         setErrMsg("Some Error Occurred");
-        // alert("No user Found");
+     
       }
       
     })

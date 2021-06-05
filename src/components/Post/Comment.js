@@ -13,7 +13,7 @@ function Comment(props){
     if(isLiked)
         color = "red";
         return <div>
-            <li style={{color:color, cursor:"pointer"}} onClick={trigger}>{data.text}</li>      
+            <li style={{color:color, cursor:"pointer"}} onClick={trigger}>{data.content}</li>      
             {/* <button className="btn btn-secondary" onClick={() => delComment(index)} style={{marginLeft: "520px", marginTop: "-44px"}} type="submit">Delete</button>  
             */}
             <button className="btn btn-secondary" onClick={() => delCommentAPI(index)} style={{marginLeft: "520px", marginTop: "-44px"}} type="submit">Delete</button>  

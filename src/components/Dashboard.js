@@ -51,6 +51,7 @@ function Dashboard(){
             })
             .then(function (response) {
               console.log('True Hurray Connected!!');
+              console.log(response.data);
               let fetchPost = response.data;
               setposts(fetchPost);      
             })
